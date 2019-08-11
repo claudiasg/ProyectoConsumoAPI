@@ -1,0 +1,31 @@
+{
+  "proyectoAPiRestApp": {
+    "restaurant": {
+      "home": {
+        "title": "Restaurants",
+        "createLabel": "Crear nuevo Restaurant",
+        "createOrEditLabel": "Crear o editar Restaurant",
+        "notFound": "No Restaurants found"
+      },
+      "created": "Un nuevo Restaurant ha sido creado con el identificador {{ param }}",
+      "updated": "Un Restaurant ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Restaurant ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Restaurant {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant"
+      },
+      "restaurantID": "Restaurant ID",
+      "restaurantName": "Restaurant Name",
+      "address": "Address",
+      "plate": "Plate",
+      "drink": "Drink",
+      "dessert": "Dessert",
+      "departmentName": "Department Name",
+      "help": {
+        "restaurantID": "The firstname attribute."
+      }
+    }
+  }
+}

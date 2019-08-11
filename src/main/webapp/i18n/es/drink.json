@@ -1,0 +1,25 @@
+{
+  "proyectoAPiRestApp": {
+    "drink": {
+      "home": {
+        "title": "Drinks",
+        "createLabel": "Crear nuevo Drink",
+        "createOrEditLabel": "Crear o editar Drink",
+        "notFound": "No Drinks found"
+      },
+      "created": "Un nuevo Drink ha sido creado con el identificador {{ param }}",
+      "updated": "Un Drink ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Drink ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Drink {{ id }}?"
+      },
+      "detail": {
+        "title": "Drink"
+      },
+      "drinkID": "Drink ID",
+      "description": "Description",
+      "price": "Price",
+      "restaurantName": "Restaurant Name"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "proyectoAPiRestApp": {
+    "plate": {
+      "home": {
+        "title": "Plates",
+        "createLabel": "Crear nuevo Plate",
+        "createOrEditLabel": "Crear o editar Plate",
+        "notFound": "No Plates found"
+      },
+      "created": "Un nuevo Plate ha sido creado con el identificador {{ param }}",
+      "updated": "Un Plate ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Plate ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Plate {{ id }}?"
+      },
+      "detail": {
+        "title": "Plate"
+      },
+      "plateID": "Plate ID",
+      "description": "Description",
+      "price": "Price",
+      "restaurantName": "Restaurant Name"
+    }
+  }
+}

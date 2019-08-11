@@ -1,0 +1,64 @@
+// an ignored comment
+/** not an ignored comment */
+entity Department {
+	departmentID String required,
+	departmentName String  
+}
+
+
+entity Plate {
+	plateID String required,
+	description String,
+    price Long
+}
+entity Drink{
+	drinkID String required,
+    description String,
+    price Long
+}
+entity Dessert
+{
+	dessertID String required,
+    description String,
+    price Long
+}
+entity Restaurant {
+	/**
+	* The firstname attribute.
+	*/    
+    restaurantID String required,
+	restaurantName String,
+	address String,
+	}
+
+entity User
+{
+    userName String required,
+	userName String, 
+    email String,
+    password String,
+    createTime Instant
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	
+	Department{restaurant} to Restaurant{departmentName}
+    Restaurant{plate} to Plate{restaurantName}
+    Restaurant{drink} to Drink{restaurantName}
+    Restaurant{dessert} to Dessert{restaurantName}
+    //Restaurant(department) to Department
+}
+
+
+
+
+
+// Set pagination options
+paginate Restaurant, Department with infinite-scroll
+paginate Dessert, Drink, Plate with pagination
+
+service all with serviceImpl except Department
+
+

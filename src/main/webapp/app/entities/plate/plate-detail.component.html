@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="plate">
+            <h2><span jhiTranslate="proyectoAPiRestApp.plate.detail.title">Plate</span> {{plate.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="proyectoAPiRestApp.plate.plateID">Plate ID</span></dt>
+                <dd>
+                    <span>{{plate.plateID}}</span>
+                </dd>
+                <dt><span jhiTranslate="proyectoAPiRestApp.plate.description">Description</span></dt>
+                <dd>
+                    <span>{{plate.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="proyectoAPiRestApp.plate.price">Price</span></dt>
+                <dd>
+                    <span>{{plate.price}}</span>
+                </dd>
+                <dt><span jhiTranslate="proyectoAPiRestApp.plate.restaurantName">Restaurant Name</span></dt>
+                <dd>
+                    <div *ngIf="plate.restaurantName">
+                        <a [routerLink]="['/restaurant', plate.restaurantName?.id, 'view']">{{plate.restaurantName?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plate', plate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

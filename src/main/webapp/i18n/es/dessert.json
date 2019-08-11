@@ -1,0 +1,25 @@
+{
+  "proyectoAPiRestApp": {
+    "dessert": {
+      "home": {
+        "title": "Desserts",
+        "createLabel": "Crear nuevo Dessert",
+        "createOrEditLabel": "Crear o editar Dessert",
+        "notFound": "No Desserts found"
+      },
+      "created": "Un nuevo Dessert ha sido creado con el identificador {{ param }}",
+      "updated": "Un Dessert ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Dessert ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Dessert {{ id }}?"
+      },
+      "detail": {
+        "title": "Dessert"
+      },
+      "dessertID": "Dessert ID",
+      "description": "Description",
+      "price": "Price",
+      "restaurantName": "Restaurant Name"
+    }
+  }
+}
