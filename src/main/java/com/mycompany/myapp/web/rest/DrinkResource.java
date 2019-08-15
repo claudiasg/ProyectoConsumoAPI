@@ -85,6 +85,27 @@ public class DrinkResource {
          return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, drink.getId().toString()))
              .body(result);
      }
+     /**
+   * PATCH  /restaurants/:id : Updates an existing area.
+   *
+   * @param restaurant the restaurant to update
+   * @return the ResponseEntity with status 200 (OK) and with body the updated area,
+   * or with status 400 (Bad Request) if the area is not valid,
+   * or with status 500 (Internal Server Error) if the area couldn't be updated
+   * @throws URISyntaxException if the Location URI syntax is incorrect
+   */
+  @PatchMapping("/drinks/{id}")
+  public ResponseEntity<Drink> partialUpdateDrink(@PathVariable Long id, @RequestBody Drink drink)
+          throws URISyntaxException {
+      log.debug("REST request to update Drink : {}", drink);
+      if (id == null) {
+          throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+      }
+      drink.setId(id);
+      Drink result = drinkService.partialSave(drink);
+      return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, drink.getId().toString()))
+              .body(result);
+  }
     /**
      * {@code GET  /drinks} : get all the drinks.
      *

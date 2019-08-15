@@ -77,4 +77,23 @@ public class DrinkServiceImpl implements DrinkService {
         log.debug("Request to delete Drink : {}", id);
         drinkRepository.deleteById(id);
     }
+    @Override
+   public Drink partialSave(Drink partialDrink) {
+       log.debug("Request to save Drink : {}", partialDrink);
+       Optional<Drink> drink = drinkRepository.findById(partialDrink.getId());
+       if (partialDrink.getDrinkID() == null) {
+           partialDrink.setDrinkID(drink.get().getDrinkID());
+       }
+       if (partialDrink.getDescription() == null) {
+           partialDrink.setDescription(drink.get().getDescription());
+       }
+       if (partialDrink.getPrice() == null) {
+           partialDrink.setPrice(drink.get().getPrice());
+       }
+       if (partialDrink.getRestaurantName() == null) {
+           partialDrink.setRestaurantName(drink.get().getRestaurantName());
+       }
+       return drinkRepository.save(partialDrink);
+   }
+
 }

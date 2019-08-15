@@ -43,4 +43,11 @@ public interface PlateService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    /**
+     * Save a area.
+     *
+     * @param area the entity to save
+     * @return the persisted entity
+     */
+    Plate partialSave(Plate plate);
 }

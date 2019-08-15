@@ -86,6 +86,27 @@ public class PlateResource {
              .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, plate.getId().toString()))
              .body(result);
      }
+     /**
+ * PATCH  /restaurants/:id : Updates an existing area.
+ *
+ * @param restaurant the restaurant to update
+ * @return the ResponseEntity with status 200 (OK) and with body the updated area,
+ * or with status 400 (Bad Request) if the area is not valid,
+ * or with status 500 (Internal Server Error) if the area couldn't be updated
+ * @throws URISyntaxException if the Location URI syntax is incorrect
+ */
+@PatchMapping("/plates/{id}")
+public ResponseEntity<Plate> partialUpdatePlate(@PathVariable Long id, @RequestBody Plate plate)
+        throws URISyntaxException {
+    log.debug("REST request to update Plate : {}", plate);
+    if (id == null) {
+        throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+    }
+    plate.setId(id);
+    Plate result = plateService.partialSave(plate);
+    return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, plate.getId().toString()))
+            .body(result);
+}
     /**
      * {@code GET  /plates} : get all the plates.
      *

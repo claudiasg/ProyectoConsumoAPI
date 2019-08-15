@@ -77,4 +77,25 @@ public class PlateServiceImpl implements PlateService {
         log.debug("Request to delete Plate : {}", id);
         plateRepository.deleteById(id);
     }
+
+    @Override
+   public Plate partialSave(Plate partialPlate) {
+       log.debug("Request to save Plate : {}", partialPlate);
+       Optional<Plate> plate = plateRepository.findById(partialPlate.getId());
+       if (partialPlate.getPlateID() == null) {
+           partialPlate.setPlateID(plate.get().getPlateID());
+       }
+       if (partialPlate.getDescription() == null) {
+           partialPlate.setDescription(plate.get().getDescription());
+       }
+       if (partialPlate.getPrice() == null) {
+           partialPlate.setPrice(plate.get().getPrice());
+       }
+       if (partialPlate.getRestaurantName() == null) {
+           partialPlate.setRestaurantName(plate.get().getRestaurantName());
+       }
+
+       return plateRepository.save(partialPlate);
+   }
+
 }

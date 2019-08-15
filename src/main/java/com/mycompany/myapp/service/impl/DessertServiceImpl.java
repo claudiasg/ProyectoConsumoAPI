@@ -77,4 +77,23 @@ public class DessertServiceImpl implements DessertService {
         log.debug("Request to delete Dessert : {}", id);
         dessertRepository.deleteById(id);
     }
+
+    @Override
+   public Dessert partialSave(Dessert partialDessert) {
+       log.debug("Request to save Dessert : {}", partialDessert);
+       Optional<Dessert> dessert = dessertRepository.findById(partialDessert.getId());
+       if (partialDessert.getDessertID() == null) {
+           partialDessert.setDessertID(dessert.get().getDessertID());
+       }
+       if (partialDessert.getDescription() == null) {
+           partialDessert.setDescription(dessert.get().getDescription());
+       }
+       if (partialDessert.getPrice() == null) {
+           partialDessert.setPrice(dessert.get().getPrice());
+       }
+       if (partialDessert.getRestaurantName() == null) {
+           partialDessert.setRestaurantName(dessert.get().getRestaurantName());
+       }
+       return dessertRepository.save(partialDessert);
+   }
 }

@@ -86,6 +86,27 @@ public class DessertResource {
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, dessert.getId().toString()))
             .body(result);
     }
+    /**
+  * PATCH  /restaurants/:id : Updates an existing area.
+  *
+  * @param restaurant the restaurant to update
+  * @return the ResponseEntity with status 200 (OK) and with body the updated area,
+  * or with status 400 (Bad Request) if the area is not valid,
+  * or with status 500 (Internal Server Error) if the area couldn't be updated
+  * @throws URISyntaxException if the Location URI syntax is incorrect
+  */
+ @PatchMapping("/Desserts/{id}")
+ public ResponseEntity<Dessert> partialUpdateDessert(@PathVariable Long id, @RequestBody Dessert dessert)
+         throws URISyntaxException {
+     log.debug("REST request to update Dessert : {}", dessert);
+     if (id == null) {
+         throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+     }
+     dessert.setId(id);
+     Dessert result = dessertService.partialSave(dessert);
+     return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, dessert.getId().toString()))
+             .body(result);
+ }
 
     /**
      * {@code GET  /desserts} : get all the desserts.
