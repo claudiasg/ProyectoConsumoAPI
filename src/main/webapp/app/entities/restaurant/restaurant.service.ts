@@ -19,8 +19,8 @@ export class RestaurantService {
     return this.http.post<IRestaurant>(this.resourceUrl, restaurant, { observe: 'response' });
   }
 
-  update(restaurant: IRestaurant): Observable<EntityResponseType> {
-    return this.http.put<IRestaurant>(this.resourceUrl, restaurant, { observe: 'response' });
+  update(id:number,restaurant: IRestaurant): Observable<EntityResponseType> {
+    return this.http.put<IRestaurant>(`${this.resourceUrl}/$id, restaurant, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

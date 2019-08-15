@@ -19,8 +19,8 @@ export class PlateService {
     return this.http.post<IPlate>(this.resourceUrl, plate, { observe: 'response' });
   }
 
-  update(plate: IPlate): Observable<EntityResponseType> {
-    return this.http.put<IPlate>(this.resourceUrl, plate, { observe: 'response' });
+  update(id:number,plate: IPlate): Observable<EntityResponseType> {
+    return this.http.put<IPlate>(`${this.resourceUrl}/$id`, plate, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

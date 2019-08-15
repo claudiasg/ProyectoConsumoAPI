@@ -19,8 +19,8 @@ export class DessertService {
     return this.http.post<IDessert>(this.resourceUrl, dessert, { observe: 'response' });
   }
 
-  update(dessert: IDessert): Observable<EntityResponseType> {
-    return this.http.put<IDessert>(this.resourceUrl, dessert, { observe: 'response' });
+  update(id:number,dessert: IDessert): Observable<EntityResponseType> {
+    return this.http.put<IDessert>(`${this.resourceUrl}/$id`, dessert, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

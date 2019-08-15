@@ -67,7 +67,7 @@ export class DessertUpdateComponent implements OnInit {
     this.isSaving = true;
     const dessert = this.createFromForm();
     if (dessert.id !== undefined) {
-      this.subscribeToSaveResponse(this.dessertService.update(dessert));
+      this.subscribeToSaveResponse(this.dessertService.update(this.dessert.id,dessert));
     } else {
       this.subscribeToSaveResponse(this.dessertService.create(dessert));
     }

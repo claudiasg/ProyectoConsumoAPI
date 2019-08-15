@@ -44,7 +44,7 @@ export class DepartmentUpdateComponent implements OnInit {
     this.isSaving = true;
     const department = this.createFromForm();
     if (department.id !== undefined) {
-      this.subscribeToSaveResponse(this.departmentService.update(department));
+      this.subscribeToSaveResponse(this.departmentService.update(this.department.id,department));
     } else {
       this.subscribeToSaveResponse(this.departmentService.create(department));
     }

@@ -67,7 +67,7 @@ export class PlateUpdateComponent implements OnInit {
     this.isSaving = true;
     const plate = this.createFromForm();
     if (plate.id !== undefined) {
-      this.subscribeToSaveResponse(this.plateService.update(plate));
+      this.subscribeToSaveResponse(this.plateService.update(this.plate.id,plate));
     } else {
       this.subscribeToSaveResponse(this.plateService.create(plate));
     }

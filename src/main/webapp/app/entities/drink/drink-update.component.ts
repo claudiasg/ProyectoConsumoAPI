@@ -67,7 +67,7 @@ export class DrinkUpdateComponent implements OnInit {
     this.isSaving = true;
     const drink = this.createFromForm();
     if (drink.id !== undefined) {
-      this.subscribeToSaveResponse(this.drinkService.update(drink));
+      this.subscribeToSaveResponse(this.drinkService.update(this.drink.id,drink));
     } else {
       this.subscribeToSaveResponse(this.drinkService.create(drink));
     }

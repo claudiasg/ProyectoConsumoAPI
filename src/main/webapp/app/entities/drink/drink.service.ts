@@ -19,8 +19,8 @@ export class DrinkService {
     return this.http.post<IDrink>(this.resourceUrl, drink, { observe: 'response' });
   }
 
-  update(drink: IDrink): Observable<EntityResponseType> {
-    return this.http.put<IDrink>(this.resourceUrl, drink, { observe: 'response' });
+  update(id:number,drink: IDrink): Observable<EntityResponseType> {
+    return this.http.put<IDrink>(`${this.resourceUrl}/$id`, drink, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

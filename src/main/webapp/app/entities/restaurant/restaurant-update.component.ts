@@ -67,7 +67,7 @@ export class RestaurantUpdateComponent implements OnInit {
     this.isSaving = true;
     const restaurant = this.createFromForm();
     if (restaurant.id !== undefined) {
-      this.subscribeToSaveResponse(this.restaurantService.update(restaurant));
+      this.subscribeToSaveResponse(this.restaurantService.update(this.restaurant.id,restaurant));
     } else {
       this.subscribeToSaveResponse(this.restaurantService.create(restaurant));
     }

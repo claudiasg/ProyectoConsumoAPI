@@ -19,9 +19,9 @@ export class DepartmentService {
     return this.http.post<IDepartment>(this.resourceUrl, department, { observe: 'response' });
   }
 
-  update(department: IDepartment): Observable<EntityResponseType> {
-    return this.http.put<IDepartment>(this.resourceUrl, department, { observe: 'response' });
-  }
+  update(id:number,department: IDepartment): Observable<EntityResponseType> {
+  return this.http.put<IDepartment>(`${this.resourceUrl}/$id`, department, { observe: 'response' });
+}
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IDepartment>(`${this.resourceUrl}/${id}`, { observe: 'response' });
