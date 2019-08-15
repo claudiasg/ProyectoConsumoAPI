@@ -77,4 +77,29 @@ public class RestaurantServiceImpl implements RestaurantService {
         log.debug("Request to delete Restaurant : {}", id);
         restaurantRepository.deleteById(id);
     }
+    @Override
+   public Restaurant partialSave(Restaurant partialRestaurant) {
+       log.debug("Request to save Restaurant : {}", partialRestaurant);
+       Optional<Restaurant> restaurant = restaurantRepository.findById(partialRestaurant.getId());
+       if (partialRestaurant.getRestaurantID() == null) {
+           partialRestaurant.setRestaurantID(restaurant.get().getRestaurantID());
+       }
+       if (partialRestaurant.getRestaurantName() == null) {
+           partialRestaurant.setRestaurantName(restaurant.get().getRestaurantName());
+       }
+       if (partialRestaurant.getAddress() == null) {
+           partialRestaurant.setAddress(restaurant.get().getAddress());
+       }
+       if (partialRestaurant.getPlates() == null) {
+           partialRestaurant.setPlates(restaurant.get().getPlates());
+       }
+       if (partialRestaurant.getDrinks() == null) {
+           partialRestaurant.setDrinks(restaurant.get().getDrinks());
+       }
+       if (partialRestaurant.getDesserts() == null) {
+           partialRestaurant.setDesserts(restaurant.get().getDesserts());
+       }
+       return restaurantRepository.save(partialRestaurant);
+   }
+
 }
