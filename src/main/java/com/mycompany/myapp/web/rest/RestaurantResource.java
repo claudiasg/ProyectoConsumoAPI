@@ -73,17 +73,19 @@ public class RestaurantResource {
      * or with status {@code 500 (Internal Server Error)} if the restaurant couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/restaurants")
-    public ResponseEntity<Restaurant> updateRestaurant(@Valid @RequestBody Restaurant restaurant) throws URISyntaxException {
-        log.debug("REST request to update Restaurant : {}", restaurant);
-        if (restaurant.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        Restaurant result = restaurantService.save(restaurant);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, restaurant.getId().toString()))
-            .body(result);
-    }
+     @PutMapping("/restaurants/{id}")
+     public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id,@Valid @RequestBody Restaurant restaurant) throws URISyntaxException {
+         log.debug("REST request to update Restaurant : {}", restaurant);
+       //  if (restaurant.getId() == null) {
+         if (id == null) {
+             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+         }
+         restaurant.setId(id);
+         Restaurant result = restaurantService.save(restaurant);
+         return ResponseEntity.ok()
+             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, restaurant.getId().toString()))
+             .body(result);
+     }
 
     /**
      * {@code GET  /restaurants} : get all the restaurants.

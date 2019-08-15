@@ -73,18 +73,18 @@ public class DrinkResource {
      * or with status {@code 500 (Internal Server Error)} if the drink couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/drinks")
-    public ResponseEntity<Drink> updateDrink(@Valid @RequestBody Drink drink) throws URISyntaxException {
-        log.debug("REST request to update Drink : {}", drink);
-        if (drink.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        Drink result = drinkService.save(drink);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, drink.getId().toString()))
-            .body(result);
-    }
-
+     @PutMapping("/drinks/{id}")
+     public ResponseEntity<Drink> updateDrink(@PathVariable Long id,@Valid @RequestBody Drink drink) throws URISyntaxException {
+         log.debug("REST request to update Drink : {}", drink);
+         //if (drink.getId() == null) {
+           if (id == null) {
+             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+         }
+           drink.setId(id);
+         Drink result = drinkService.save(drink);
+         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, drink.getId().toString()))
+             .body(result);
+     }
     /**
      * {@code GET  /drinks} : get all the drinks.
      *

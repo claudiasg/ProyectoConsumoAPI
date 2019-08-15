@@ -73,18 +73,19 @@ public class PlateResource {
      * or with status {@code 500 (Internal Server Error)} if the plate couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/plates")
-    public ResponseEntity<Plate> updatePlate(@Valid @RequestBody Plate plate) throws URISyntaxException {
-        log.debug("REST request to update Plate : {}", plate);
-        if (plate.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        Plate result = plateService.save(plate);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, plate.getId().toString()))
-            .body(result);
-    }
-
+     @PutMapping("/plates/{id}")
+     public ResponseEntity<Plate> updatePlate(@PathVariable Long id,@Valid @RequestBody Plate plate) throws URISyntaxException {
+         log.debug("REST request to update Plate : {}", plate);
+         // if (plate.getId() == null) {
+             if (id == null) {
+             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+         }
+           plate.setId(id);
+         Plate result = plateService.save(plate);
+         return ResponseEntity.ok()
+             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, plate.getId().toString()))
+             .body(result);
+     }
     /**
      * {@code GET  /plates} : get all the plates.
      *

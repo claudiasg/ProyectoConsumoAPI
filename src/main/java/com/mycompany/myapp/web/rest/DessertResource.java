@@ -73,12 +73,14 @@ public class DessertResource {
      * or with status {@code 500 (Internal Server Error)} if the dessert couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/desserts")
-    public ResponseEntity<Dessert> updateDessert(@Valid @RequestBody Dessert dessert) throws URISyntaxException {
+    @PutMapping("/desserts/{id}")
+    public ResponseEntity<Dessert> updateDessert(@PathVariable Long id,@Valid @RequestBody Dessert dessert) throws URISyntaxException {
         log.debug("REST request to update Dessert : {}", dessert);
-        if (dessert.getId() == null) {
+        //if (dessert.getId() == null) {
+            if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+          dessert.setId(id);
         Dessert result = dessertService.save(dessert);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, dessert.getId().toString()))

@@ -73,17 +73,18 @@ public class DepartmentResource {
      * or with status {@code 500 (Internal Server Error)} if the department couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/departments")
-    public ResponseEntity<Department> updateDepartment(@Valid @RequestBody Department department) throws URISyntaxException {
-        log.debug("REST request to update Department : {}", department);
-        if (department.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        Department result = departmentRepository.save(department);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, department.getId().toString()))
-            .body(result);
-    }
+     @PutMapping("/departments/{id}")
+     public ResponseEntity<Department> updateDepartment(@PathVariable Long id,@Valid @RequestBody Department department) throws URISyntaxException {
+         log.debug("REST request to update Department : {}", department);
+       //  if (department.getId() == null) {
+         if(id == null){
+             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+         }
+          department.setId(id);
+         Department result = departmentRepository.save(department);
+         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true,ENTITY_NAME, department.getId().toString()))
+             .body(result);
+     }
 
     /**
      * {@code GET  /departments} : get all the departments.
